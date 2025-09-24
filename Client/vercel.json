@@ -1,9 +1,9 @@
 {
-    "redirects": [
-        {
-            "source": "/(.*)",
-            "destination": "https://my.todo.vercel.app/$1",
-            "permanent": true
-        }
-    ]
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/" }
+    ],
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist",
+    "framework": "vite",
+    "cleanUrls": true
 }
