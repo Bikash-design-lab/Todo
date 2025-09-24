@@ -12,6 +12,7 @@ const { router: todoRouter } = require('./Router/todo.route');
 app.use(express.json()); // to parse json data
 app.use(cors({
     origin: [
+        "https://todo-neon-nine-19.vercel.app",
         "http://localhost:5173"
     ],
     credentials: true
