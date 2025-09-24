@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast, Slide } from 'react-toastify';
 
 const BASE_API = import.meta.env.VITE_BASE_API;
 
@@ -46,10 +47,33 @@ const TodoForm = ({ todo, onSuccess }) => {
 
             if (!res.ok) throw new Error("Something went wrong!");
 
+            toast.success(todo ? 'Todo updated successfully' : 'Todo added successfully', {
+                position: "bottom-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+                transition: Slide,
+            });
+
             onSuccess(); // Refresh list & close form
             setTodoData({ title: "", description: "", status: "Pending", priority: "" });
-        } catch (error) {
-            console.error(error.message);
+        } catch (err) {
+            console.error("Error:", err);
+            toast.error(todo ? 'Failed to update todo' : 'Failed to add todo', {
+                position: "bottom-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+                transition: Slide,
+            });
         }
     };
 

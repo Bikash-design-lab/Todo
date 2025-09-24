@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TodoForm from "./TodoForm";
-
+import Loader from "./Loader"
+import { toast, Slide } from 'react-toastify';
 const BASE_API = import.meta.env.VITE_BASE_API;
 
 const Todo = () => {
@@ -22,6 +23,17 @@ const Todo = () => {
             setTodos(sortedTodos);
         } catch (err) {
             setError(err.message);
+            toast.error('Failed to fetch todos', {
+                position: "bottom-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+                transition: Slide,
+            });
         } finally {
             setLoading(false);
         }
@@ -35,12 +47,34 @@ const Todo = () => {
         try {
             await fetch(`${BASE_API}/todos/delete/${_id}`, { method: "DELETE" });
             setTodos((prev) => prev.filter((todo) => todo._id !== _id));
+            toast.success('Todo deleted successfully', {
+                position: "bottom-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+                transition: Slide,
+            });
         } catch (err) {
             setError(err.message);
+            toast.error('Failed to delete todo', {
+                position: "bottom-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+                transition: Slide,
+            });
         }
     };
 
-    if (loading) return <div role="status" aria-live="polite" className="text-center p-4 text-gray-600">Loading...</div>
+    if (loading) return <Loader />
     if (error) return <div role="alert" aria-live="assertive" className="text-center p-4 text-red-600">Something went wrong. Please try again later.</div>
 
     return (
