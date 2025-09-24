@@ -3,6 +3,7 @@
 A responsive Todo application built with **React** that supports **Create, Read, Update, and Delete (CRUD)** operations using a backend API. The app includes a modern UI, popup forms with background blur, and resizable input fields for a better user experience.
 
 ---
+- [Click to checkout Todo: Live demo](https://todo-neon-nine-19.vercel.app/) 
 
 ## Features
 
