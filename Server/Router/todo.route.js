@@ -1,18 +1,18 @@
 const express = require('express');
 
-const router = express.Router();
+const todoRouter = express.Router();
 
 const { todoModel } = require("../Model/todo.model");
 const { updateTodo, deleteTodoById, getTodoById, getAllTodos, createNewTodo } = require("../Controller/todo.controller");
 
-router.post("/add", createNewTodo);
+todoRouter.post("/todos/add", createNewTodo);
 
-router.get("/", getAllTodos);
+todoRouter.get("/todos", getAllTodos);
 
-router.get("/:id", getTodoById);
+todoRouter.get("/todos/:id", getTodoById);
 
-router.patch("/update/:id", updateTodo);
+todoRouter.patch("/todos/update/:id", updateTodo);
 
-router.delete("/delete/:id", deleteTodoById);
+todoRouter.delete("/todos/delete/:id", deleteTodoById);
 
-module.exports = { router };
+module.exports = { todoRouter };

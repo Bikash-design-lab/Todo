@@ -7,7 +7,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 8000;
 
 const { ConnnectDB } = require('./Config/db');
-const { router: todoRouter } = require('./Router/todo.route');
+const { todoRouter } = require('./Router/todo.route');
 // middlewares
 app.use(express.json()); // to parse json data
 app.use(cors({

@@ -31,11 +31,11 @@ const TodoForm = ({ todo, onSuccess }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            let url = BASE_API + "/add";
+            let url = BASE_API + "/todos/add";
             let method = "POST";
 
             if (todo) {
-                url = `${BASE_API}/update/${todo._id}`;
+                url = `${BASE_API}/todos/update/${todo._id}`;
                 method = "PATCH";
             }
 

@@ -14,7 +14,7 @@ const Todo = () => {
     const fetchTodos = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`${BASE_API}/`);
+            const res = await fetch(`${BASE_API}/todos/`);
             const data = await res.json();
             // Sort by newest first
             const sortedTodos = data.todos.sort(
@@ -45,7 +45,7 @@ const Todo = () => {
 
     const handleDelete = async (_id) => {
         try {
-            await fetch(`${BASE_API}/delete/${_id}`, { method: "DELETE" });
+            await fetch(`${BASE_API}/todos/delete/${_id}`, { method: "DELETE" });
             setTodos((prev) => prev.filter((todo) => todo._id !== _id));
             toast.success('Todo deleted successfully', {
                 position: "bottom-right",
