@@ -1,0 +1,35 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo_container_todo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./Server
+    container_name: server_container_todo
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./Server/.env
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/Todos
+      - PORT=8000
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./Client
+      args:
+        - VITE_BASE_API=http://backend:8000
+    container_name: client_container_todo
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
