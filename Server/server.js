@@ -29,7 +29,7 @@ app.get("/health", (req, res) => {
 })
 
 // todo rouer
-app.use("/todos", todoRouter);
+app.use("/", todoRouter);
 
 
 
